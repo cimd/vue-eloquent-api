@@ -1,5 +1,7 @@
 <?php
 
+namespace Konnec\VueEloquentApi\Traits;
+
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

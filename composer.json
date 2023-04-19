@@ -7,18 +7,49 @@
             "Konnec\\VueEloquentApi\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Konnec\\VueEloquentApi\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "ide-helper": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite"
+        ]
+    },
     "authors": [
         {
             "name": "Christian D'Aquino"
         }
     ],
     "minimum-stability": "stable",
+    "require": {
+        "php": "^8.1"
+    },
     "require-dev": {
-        "pestphp/pest": "^2.5"
+        "barryvdh/laravel-ide-helper": "^2.13",
+        "fakerphp/faker": "^1.20",
+        "laravel/framework": "^10.4",
+        "laravel/helpers": "^1.6",
+        "laravel/pint": "^1.9",
+        "mockery/mockery": "^1.5",
+        "nunomaduro/collision": "^7.4",
+        "nunomaduro/larastan": "^2.0",
+        "pestphp/pest": "^2.5",
+        "pestphp/pest-plugin-faker": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
-        }
+        },
+        "sort-packages": true
     }
 }

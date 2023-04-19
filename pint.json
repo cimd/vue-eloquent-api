@@ -1,0 +1,23 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "concat_space": {
+      "spacing": "one"
+    },
+    "align_multiline_comment": {
+      "comment_type": "phpdocs_only"
+    },
+    "array_indentation": true,
+    "array_syntax": {
+      "syntax": "short"
+    },
+    "blank_line_after_namespace": true,
+    "blank_line_after_opening_tag": true,
+    "combine_consecutive_issets": true,
+    "combine_consecutive_unsets": true,
+    "declare_parentheses": false,
+    "explicit_string_variable": true,
+    "fully_qualified_strict_types": true,
+    "trim_array_spaces": true
+  }
+}

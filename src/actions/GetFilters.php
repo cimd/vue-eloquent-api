@@ -1,5 +1,7 @@
 <?php
 
+namespace Konnec\VueEloquentApi\Actions;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
