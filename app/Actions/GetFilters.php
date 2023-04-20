@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class GetFilters
 {
@@ -29,12 +28,12 @@ class GetFilters
         $filters = $this->filters;
 
         $filter->each(function ($value, $key) use ($query, $filters) {
-            Log::debug('Filter', [
-                'filter-class' => $filters[$key],
-                'query' => $query->toSql(),
-                'key' => $key,
-                'value' => $value,
-            ]);
+//            Log::debug('Filter', [
+//                'filter-class' => $filters[$key],
+//                'query' => $query->toSql(),
+//                'key' => $key,
+//                'value' => $value,
+//            ]);
             if (isset($value)) {
                 if (isset($filters[$key])) {
                     $class = $filters[$key];
@@ -43,9 +42,9 @@ class GetFilters
             }
         });
 
-        Log::debug('Final Query', [
-            'query' => $query->toSql(),
-        ]);
+//        Log::debug('Final Query', [
+//            'query' => $query->toSql(),
+//        ]);
 
         return $query;
         // https://www.jsonapi.net/usage/reading/filtering.html

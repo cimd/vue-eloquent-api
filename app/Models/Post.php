@@ -34,6 +34,11 @@ class Post extends Model
 
     public function readers(): HasMany
     {
-        return $this->hasMany(User::class, 'readers_id');
+        return $this->hasMany(User::class, 'id', 'readers_id');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }

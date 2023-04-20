@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Pest" type="PestRunConfigurationType">
+    <CommandLine>
+      <PhpTestInterpreterSettings>
+        <option name="interpreterName" value="PHP 8.1" />
+      </PhpTestInterpreterSettings>
+    </CommandLine>
+    <option name="pestRunnerSettings">
+      <PestRunner directory="$PROJECT_DIR$/vendor/bin" method="" />
+    </option>
+    <option name="runnerSettings">
+      <PhpTestRunnerSettings directory="$PROJECT_DIR$/vendor/bin" method="" />
+    </option>
+    <method v="2" />
+  </configuration>
+</component>

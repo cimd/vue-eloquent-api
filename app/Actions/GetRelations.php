@@ -21,11 +21,14 @@ class GetRelations
 //            'filter' => $filter->toArray(),
 //        ]);
 
+         $relationsArray = explode(',', $relations);
+
          Log::debug('Final Relation', [
              'query' => $query->toSql(),
              'relations' => $relations,
+             'array' => $relationsArray,
          ]);
 
-         return $query->include($relations);
+         return $query->with($relationsArray);
      }
 }
