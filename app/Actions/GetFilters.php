@@ -27,16 +27,17 @@ class GetFilters
 //        ]);
 
         $filters = $this->filters;
+
         $filter->each(function ($value, $key) use ($query, $filters) {
-//            Log::debug('Filter', [
-//                'filter-class' => $filters[$key],
-//                'query' => $query->toSql(),
-//                'key' => $key,
-//                'value' => $value,
-//            ]);
+            Log::debug('Filter', [
+                'filter-class' => $filters[$key],
+                'query' => $query->toSql(),
+                'key' => $key,
+                'value' => $value,
+            ]);
             if (isset($value)) {
                 if (isset($filters[$key])) {
-                    $class = $this->filters[$key];
+                    $class = $filters[$key];
                     (new $class($query, $key, $value))->handle();
                 }
             }
