@@ -5,7 +5,6 @@ namespace App\Traits;
 use App\Actions\GetFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 trait EloquentApi
 {
@@ -18,7 +17,7 @@ trait EloquentApi
 //            'filter-get' => $request->get('filter'),
 //        ]);
         if ($request->has('filter')) {
-            $query = (new GetFilters($query, $request->get('filter')))->handle();
+            $query = (new GetFilters($this->filters))->handle($query, $request->get('filter'));
         }
 //        $request->each(function ($value, $key) use ($query, $filters) {
 //            if (isset($value)) {

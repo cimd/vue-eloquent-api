@@ -8,17 +8,45 @@ use Illuminate\Support\Facades\Log;
 
 class GetFilters
 {
-    private Collection $filter;
+    private Collection $filters;
 
     public function __construct(
-        private readonly Builder $query,
-        array $filter,
+        array $filters,
     ) {
-        $this->filter = collect($filter);
+        $this->filters = collect($filters);
     }
 
-    public function handle(): Builder
+    public function handle(Builder $query, array $filter): Builder
     {
+        $filter = collect($filter);
+
+//        Log::debug('Getting filters', [
+//            'query' => $query->toSql(),
+//            'filters' => $this->filters->toArray(),
+//            'filter' => $filter->toArray(),
+//        ]);
+
+        $filters = $this->filters;
+        $filter->each(function ($value, $key) use ($query, $filters) {
+//            Log::debug('Filter', [
+//                'filter-class' => $filters[$key],
+//                'query' => $query->toSql(),
+//                'key' => $key,
+//                'value' => $value,
+//            ]);
+            if (isset($value)) {
+                if (isset($filters[$key])) {
+                    $class = $this->filters[$key];
+                    (new $class($query, $key, $value))->handle();
+                }
+            }
+        });
+
+        Log::debug('Final Query', [
+            'query' => $query->toSql(),
+        ]);
+
+        return $query;
         // https://www.jsonapi.net/usage/reading/filtering.html
 //        https://discuss.jsonapi.org/t/filtering-querying-deep-relationships-a-proposal-for-a-syntax/1746/4
 
@@ -51,12 +79,5 @@ class GetFilters
 //    LessThanOrEqualTo	Displays the pivot table when the text is lesser than or equal.
 //    Between	    Displays the pivot table that records between the start and end text.
 //    NotBetween	Displays the pivot table that does not record between the start and end text.
-
-        Log::debug('Getting filters', [
-            'query' => $this->query->toSql(),
-            'filter' => $this->filter->toArray(),
-        ]);
-
-        return $this->query;
     }
 }

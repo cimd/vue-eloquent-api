@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Application\Models\Filters;
+namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class WhereEqual
+class WhereEqual implements Filter
 {
     public function __construct(
         private readonly Builder $query,
