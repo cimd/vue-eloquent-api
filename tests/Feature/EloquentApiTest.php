@@ -1,7 +1,7 @@
 <?php
 
 test('filters', function () {
-    $response = $this->getJson('/api/posts?filter[author_id]=1');
+    $response = $this->getJson('/api/eloquent-api-example/posts?filter[author_id]=1');
 
     $response->dump(0);
 
@@ -10,7 +10,7 @@ test('filters', function () {
 });
 
 test('relations', function () {
-    $response = $this->getJson('/api/posts?include=author,comments');
+    $response = $this->getJson('/api/eloquent-api-example/posts?include=author,comments');
 
 //    $response->dump(0);
 
@@ -20,7 +20,7 @@ test('relations', function () {
 });
 
 test('filters + relations', function () {
-    $response = $this->getJson('/api/posts?filter[author_id]=1&include=author,comments');
+    $response = $this->getJson('/api/eloquent-api-example/posts?filter[author_id]=1&include=author,comments');
 
 //    $response->dump(0);
 
