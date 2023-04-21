@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\VueEloquentApi\database\seeders;
+namespace Illuminate\Support\Facades\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Konnec\VueEloquentApi\Models\Comment;

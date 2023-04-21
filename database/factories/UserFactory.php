@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\VueEloquentApi\database\factories;
+namespace Illuminate\Support\Facades\database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;

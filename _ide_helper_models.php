@@ -22,7 +22,7 @@ namespace App\Models{
      * @property-read \Konnec\VueEloquentApi\Models\Post|null $post
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Comment apiQuery(\Illuminate\Http\Request $request)
-     * @method static \Konnec\VueEloquentApi\database\factories\CommentFactory factory($count = null, $state = [])
+     * @method static \Illuminate\Support\Facades\database\factories\CommentFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Comment newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Comment newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Comment query()
@@ -56,7 +56,7 @@ namespace App\Models{
      * @property-read int|null $readers_count
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Post apiQuery(\Illuminate\Http\Request $request)
-     * @method static \Konnec\VueEloquentApi\database\factories\PostFactory factory($count = null, $state = [])
+     * @method static \Illuminate\Support\Facades\database\factories\PostFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Post newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Post newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\Post query()
@@ -91,7 +91,7 @@ namespace App\Models{
      * @property-read int|null $tokens_count
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\User apiQuery(\Illuminate\Http\Request $request)
-     * @method static \Konnec\VueEloquentApi\database\factories\UserFactory factory($count = null, $state = [])
+     * @method static \Illuminate\Support\Facades\database\factories\UserFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\User newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\User newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\Konnec\VueEloquentApi\Models\User query()

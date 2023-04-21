@@ -31,9 +31,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Konnec\\VueEloquentApi\\": "src/",
+            "Konnec\\VueEloquentApi\\Database\\Factories\\": "src/database/factories/",
+            "Konnec\\VueEloquentApi\\Database\\Seeders\\": "src/database/seeders/"
         }
     },
     "autoload-dev": {
