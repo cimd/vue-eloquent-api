@@ -9,12 +9,17 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Konnec\VueEloquentApi\Actions\GetFilters;
 use Konnec\VueEloquentApi\Actions\GetPagination;
 use Konnec\VueEloquentApi\Actions\GetRelations;
+use Konnec\VueEloquentApi\Actions\GetSelection;
 use Konnec\VueEloquentApi\Actions\GetSorting;
 
 trait EloquentApi
 {
     public function scopeApiQuery(Builder $query, Request $request): Collection|LengthAwarePaginator
     {
+        if ($request->has('fields')) {
+            $query = (new GetSelection())->handle($query, $request->get('fields'));
+        }
+
         if ($request->has('filter')) {
             $query = (new GetFilters($this->filters))->handle($query, $request->get('filter'));
         }
