@@ -5,18 +5,14 @@ namespace Konnec\VueEloquentApi\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Konnec\VueEloquentApi\Actions\GetFilters;
+use Konnec\VueEloquentApi\Actions\GetPagination;
 use Konnec\VueEloquentApi\Actions\GetRelations;
+use Konnec\VueEloquentApi\Actions\GetSorting;
 
 trait EloquentApi
 {
     public function scopeApiQuery(Builder $query, Request $request): Builder
     {
-//        Log::debug('Querying API', [
-//            'query' => $query->toSql(),
-//            'request' => $request->toArray(),
-//            'filter' => $request->input('filter'),
-//            'filter-get' => $request->get('filter'),
-//        ]);
         if ($request->has('filter')) {
             $query = (new GetFilters($this->filters))->handle($query, $request->get('filter'));
         }
@@ -24,14 +20,14 @@ trait EloquentApi
         if ($request->has('include')) {
             $query = (new GetRelations())->handle($query, $request->get('include'));
         }
-//        $request->each(function ($value, $key) use ($query, $filters) {
-//            if (isset($value)) {
-//                if (isset($filters[$key])) {
-//                    $class = $filters[$key];
-//                    (new $class($query, $key, $value))->handle();
-//                }
-//            }
-//        });
+
+        if ($request->has('sort')) {
+            $query = (new GetSorting())->handle($query, $request->get('sort'));
+        }
+
+        if ($request->has('page')) {
+            $query = (new GetPagination())->handle($query);
+        }
 
         return $query;
     }
