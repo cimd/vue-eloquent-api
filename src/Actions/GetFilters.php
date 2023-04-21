@@ -31,7 +31,6 @@ class GetFilters
 
         return $query;
 
-
         // https://www.jsonapi.net/usage/reading/filtering.html
         // https://discuss.jsonapi.org/t/filtering-querying-deep-relationships-a-proposal-for-a-syntax/1746/4
 

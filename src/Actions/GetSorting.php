@@ -16,6 +16,7 @@ class GetSorting
         foreach ($sortingArray as $sorting) {
             $query->orderBy($sorting);
         }
+
         return $query;
     }
 }
