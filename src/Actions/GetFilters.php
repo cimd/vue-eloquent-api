@@ -18,22 +18,9 @@ class GetFilters
     public function handle(Builder $query, array $filter): Builder
     {
         $filter = collect($filter);
-
-//        Log::debug('Getting filters', [
-//            'query' => $query->toSql(),
-//            'filters' => $this->filters->toArray(),
-//            'filter' => $filter->toArray(),
-//        ]);
-
         $filters = $this->filters;
 
         $filter->each(function ($value, $key) use ($query, $filters) {
-//            Log::debug('Filter', [
-//                'filter-class' => $filters[$key],
-//                'query' => $query->toSql(),
-//                'key' => $key,
-//                'value' => $value,
-//            ]);
             if (isset($value)) {
                 if (isset($filters[$key])) {
                     $class = $filters[$key];
@@ -42,13 +29,11 @@ class GetFilters
             }
         });
 
-//        Log::debug('Final Query', [
-//            'query' => $query->toSql(),
-//        ]);
-
         return $query;
+
+
         // https://www.jsonapi.net/usage/reading/filtering.html
-//        https://discuss.jsonapi.org/t/filtering-querying-deep-relationships-a-proposal-for-a-syntax/1746/4
+        // https://discuss.jsonapi.org/t/filtering-querying-deep-relationships-a-proposal-for-a-syntax/1746/4
 
 //        [
 //            '=', '<>',
@@ -58,12 +43,6 @@ class GetFilters
 //            'BETWEEN', 'NOT BETWEEN',
 //            'IS NULL', 'IS NOT NULL',
 //        ];
-        //= eq
-        //<> neq
-        //> gt
-        //>= gte
-        //< lt
-        //<= lte
 
 //    Equals	    Displays the pivot table that matches with the text.
 //    DoesNotEquals	Displays the pivot table that does not match with the given text.
