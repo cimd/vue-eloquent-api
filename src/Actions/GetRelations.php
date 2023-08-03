@@ -10,10 +10,10 @@ class GetRelations
     {
     }
 
-     public function handle(Builder $query, mixed $relations): Builder
-     {
-         $relationsArray = explode(',', $relations);
+    public function handle(Builder $query, mixed $relations): Builder
+    {
+        $relationsArray = explode(',', $relations);
 
-         return $query->with($relationsArray);
-     }
+        return $query->with($relationsArray);
+    }
 }
