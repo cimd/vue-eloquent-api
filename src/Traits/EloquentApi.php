@@ -38,6 +38,10 @@ trait EloquentApi
             return $query;
         }
 
+        if ($request->has('append')) {
+            return $query->get()->append($request->get('append'));
+        }
+
         return $query->get();
     }
 }

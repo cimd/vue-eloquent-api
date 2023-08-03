@@ -10,10 +10,10 @@ class GetSelection
     {
     }
 
-     public function handle(Builder $query, mixed $selection): Builder
-     {
-         $selectionArray = explode(',', $selection);
+    public function handle(Builder $query, mixed $selection): Builder
+    {
+        $selectionArray = explode(',', $selection);
 
-         return $query->select(...$selectionArray);
-     }
+        return $query->select(...$selectionArray);
+    }
 }
