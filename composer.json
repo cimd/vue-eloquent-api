@@ -1,7 +1,7 @@
 {
     "name": "konnec/vue-eloquent-api",
     "type": "package",
-    "description": "Vue Eloquent API.",
+    "description": "Vue Eloquent API",
     "keywords": [
         "Vue",
         "Laravel",
