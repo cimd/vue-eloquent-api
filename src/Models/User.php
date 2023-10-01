@@ -9,8 +9,8 @@ use Konnec\VueEloquentApi\Traits\EloquentApi;
 
 class User extends Authenticatable
 {
-    use HasFactory;
     use EloquentApi;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.

@@ -10,8 +10,8 @@ use Konnec\VueEloquentApi\Traits\EloquentApi;
 
 class Comment extends Model
 {
-    use HasFactory;
     use EloquentApi;
+    use HasFactory;
 
     protected array $protected = [
         'created_at',

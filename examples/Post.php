@@ -11,8 +11,8 @@ use Konnec\VueEloquentApi\Traits\EloquentApi;
 
 class Post extends Model
 {
-    use HasFactory;
     use EloquentApi;
+    use HasFactory;
 
     protected array $protected = [
         'created_at',
