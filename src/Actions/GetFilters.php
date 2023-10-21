@@ -21,11 +21,9 @@ class GetFilters
         $filters = $this->filters;
 
         $filter->each(function ($value, $key) use ($query, $filters) {
-            if (isset($value)) {
-                if (isset($filters[$key])) {
-                    $class = $filters[$key];
-                    (new $class($query, $key, $value))->handle();
-                }
+            if (isset($value, $filters[$key])) {
+                $class = $filters[$key];
+                (new $class($query, $key, $value))->handle();
             }
         });
 

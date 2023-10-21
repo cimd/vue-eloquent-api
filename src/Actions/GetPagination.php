@@ -7,10 +7,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class GetPagination
 {
-    public function __construct()
-    {
-    }
-
     public function handle(Builder $query): LengthAwarePaginator
     {
         return $query->fastPaginate();

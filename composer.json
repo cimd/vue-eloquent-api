@@ -1,7 +1,7 @@
 {
     "name": "konnec/vue-eloquent-api",
     "type": "package",
-    "description": "Vue Eloquent API.",
+    "description": "Vue Eloquent API",
     "keywords": [
         "Vue",
         "Laravel",
@@ -16,30 +16,38 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "hammerstone/fast-paginate": "^0.1.12"
+        "hammerstone/fast-paginate": "^0.1",
+        "illuminate/http": "^10.28",
+        "illuminate/support": "^10.28"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
+        "driftingly/rector-laravel": "^0.26.2",
         "fakerphp/faker": "^1.23",
-        "laravel/pint": "^1.10",
+        "laravel/pint": "^1.13",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^7.7",
+        "nunomaduro/collision": "^7.10",
         "nunomaduro/larastan": "^2.6",
+        "orchestra/testbench": "^8.13",
+        "pestphp/pest": "^2.24",
         "pestphp/pest-plugin-faker": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.1",
-        "phpunit/phpunit": "^10.2",
-        "spatie/laravel-ignition": "^2.2"
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "phpunit/phpunit": "^10.4",
+        "rector/rector": "^0.18.5",
+        "spatie/laravel-ignition": "^2.3"
     },
     "autoload": {
         "psr-4": {
-            "Konnec\\VueEloquentApi\\": "src/",
-            "Konnec\\VueEloquentApi\\Database\\Factories\\": "src/database/factories/",
-            "Konnec\\VueEloquentApi\\Database\\Seeders\\": "src/database/seeders/"
+            "Konnec\\VueEloquentApi\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Konnec\\Examples\\": "examples/",
+            "Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "scripts": {
@@ -56,6 +64,30 @@
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",
             "@php artisan ide-helper:models --nowrite"
+        ],
+        "rector-dry-run": [
+            "vendor/bin/rector --dry-run"
+        ],
+        "rector": [
+            "vendor/bin/rector"
+        ],
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "test": [
+            "@php vendor/bin/pest"
         ]
     },
     "extra": {

@@ -33,9 +33,7 @@ trait EloquentApi
         }
 
         if ($request->has('page')) {
-            $query = (new GetPagination())->handle($query);
-
-            return $query;
+            return (new GetPagination())->handle($query);
         }
 
         if ($request->has('append')) {

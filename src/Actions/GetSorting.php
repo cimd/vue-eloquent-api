@@ -6,15 +6,19 @@ use Illuminate\Database\Eloquent\Builder;
 
 class GetSorting
 {
-    public function __construct()
-    {
-    }
-
-    public function handle(Builder $query, mixed $relations): Builder
+    public function handle(Builder $query, string $relations): Builder
     {
         $sortingArray = explode(',', $relations);
         foreach ($sortingArray as $sorting) {
-            $query->orderBy($sorting);
+            $lastChar = substr($sorting, -1);
+            $sortOrder = 'asc';
+            if ($lastChar === '-') {
+                $sortOrder = 'desc';
+                $sorting = substr($sorting, 0, -1);
+            } elseif ($lastChar === '+') {
+                $sorting = substr($sorting, 0, -1);
+            }
+            $query->orderBy($sorting, $sortOrder);
         }
 
         return $query;

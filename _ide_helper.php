@@ -2269,7 +2269,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently authenticated user.
          *
-         * @return \Konnec\VueEloquentApi\Models\User|null
+         * @return \Konnec\Examples\Models\User|null
          *
          * @static
          */
@@ -2309,7 +2309,7 @@ namespace Illuminate\Support\Facades {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param  mixed  $id
-         * @return \Konnec\VueEloquentApi\Models\User|false
+         * @return \Konnec\Examples\Models\User|false
          *
          * @static
          */
@@ -2400,7 +2400,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param  mixed  $id
          * @param  bool  $remember
-         * @return \Konnec\VueEloquentApi\Models\User|false
+         * @return \Konnec\Examples\Models\User|false
          *
          * @static
          */
@@ -2459,7 +2459,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param  string  $password
          * @param  string  $attribute
-         * @return \Konnec\VueEloquentApi\Models\User|null
+         * @return \Konnec\Examples\Models\User|null
          *
          * @throws \Illuminate\Auth\AuthenticationException
          *
@@ -2488,7 +2488,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \Konnec\VueEloquentApi\Models\User
+         * @return \Konnec\Examples\Models\User
          *
          * @static
          */
@@ -2621,7 +2621,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Return the currently cached user.
          *
-         * @return \Konnec\VueEloquentApi\Models\User|null
+         * @return \Konnec\Examples\Models\User|null
          *
          * @static
          */
@@ -2686,7 +2686,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated. If not, throw an exception.
          *
-         * @return \Konnec\VueEloquentApi\Models\User
+         * @return \Konnec\Examples\Models\User
          *
          * @throws \Illuminate\Auth\AuthenticationException
          *

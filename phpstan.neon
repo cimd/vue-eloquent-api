@@ -4,8 +4,8 @@ includes:
 parameters:
 
     paths:
-        - app
-        - routes
+        - src
+        - examples
 
     # The level 9 is the highest level
     level: 6

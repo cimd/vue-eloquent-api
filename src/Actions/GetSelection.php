@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class GetSelection
 {
-    public function __construct()
-    {
-    }
-
     public function handle(Builder $query, mixed $selection): Builder
     {
-        $selectionArray = explode(',', $selection);
+        $selectionArray = explode(',', (string) $selection);
 
         return $query->select(...$selectionArray);
     }
