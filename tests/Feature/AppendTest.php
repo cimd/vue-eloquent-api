@@ -1,8 +1,6 @@
 <?php
 
-use Konnec\Examples\Models\Comment;
 use Konnec\Examples\Models\Post;
-use Konnec\Examples\Models\User;
 
 it('appends attribute', function () {
     Post::factory()->count(1)->create();

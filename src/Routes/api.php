@@ -7,5 +7,5 @@ use Konnec\VueEloquentApi\Controllers\StateController;
 Route::prefix('/api/v1/eloquent-api')->group(function () {
     Route::apiResource('models', ModelController::class);
     Route::apiResource('states', StateController::class);
-//    Route::apiResource('stores', StoreController::class)->only('index', 'store', 'destroy');
+    //    Route::apiResource('stores', StoreController::class)->only('index', 'store', 'destroy');
 });

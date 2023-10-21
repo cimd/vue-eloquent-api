@@ -3,6 +3,7 @@
 use Konnec\Examples\Models\Comment;
 use Konnec\Examples\Models\Post;
 use Konnec\Examples\Models\User;
+
 it('fetches with relations', function () {
     User::factory()->count(1)->create();
     Post::factory()->count(1)->create();

@@ -1,8 +1,6 @@
 <?php
 
-use Konnec\Examples\Models\Comment;
 use Konnec\Examples\Models\Post;
-use Konnec\Examples\Models\User;
 
 it('select fields', function () {
     Post::factory()->count(1)->create();
@@ -10,5 +8,5 @@ it('select fields', function () {
 
     $response->assertStatus(200);
     expect($response->json('data')[0])->toHaveKeys(['id', 'title'])
-    ->and($response->json('data')[0])->not->toHaveKey('description');
+        ->and($response->json('data')[0])->not->toHaveKey('description');
 });

@@ -18,10 +18,10 @@ it('filters by id', function () {
 
     $request = [
         'filter' => [
-            'author_id' => 1
-        ]
+            'author_id' => 1,
+        ],
     ];
-    $response = $this->call('GET','/posts', $request);
+    $response = $this->call('GET', '/posts', $request);
 
     $response->assertStatus(200);
     expect($response->json('data'))->toHaveCount(2);

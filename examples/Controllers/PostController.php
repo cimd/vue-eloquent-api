@@ -2,10 +2,10 @@
 
 namespace Konnec\Examples\Controllers;
 
-use Konnec\Examples\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Konnec\Examples\Models\Post;
 
 class PostController extends Controller
 {
@@ -80,7 +80,8 @@ class PostController extends Controller
     {
         $result = [];
         foreach ($request->data as $item) {
-            $line = $this->destroy(new Request($item), $item['id']);
+            $post = Post::find($item['id']);
+            $line = $this->destroy($post);
             array_push($result, $line['data']);
         }
 

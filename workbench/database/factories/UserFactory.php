@@ -7,7 +7,6 @@ use Konnec\Examples\Models\User;
 
 class UserFactory extends Factory
 {
-
     protected $model = User::class;
 
     public function definition(): array
@@ -15,7 +14,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => fake()->password
+            'password' => fake()->password,
         ];
     }
 
