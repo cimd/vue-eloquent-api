@@ -1,6 +1,6 @@
 <?php
 
-namespace Konnec\VueEloquentApi\Models;
+namespace Konnec\Examples\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;

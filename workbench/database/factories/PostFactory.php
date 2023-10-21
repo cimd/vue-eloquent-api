@@ -1,9 +1,9 @@
 <?php
 
-namespace Illuminate\Support\Facades\database\factories;
+namespace Workbench\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Konnec\VueEloquentApi\Models\Post;
+use Konnec\Examples\Models\Post;
 
 class PostFactory extends Factory
 {
@@ -14,7 +14,7 @@ class PostFactory extends Factory
         return [
             'author_id' => 1,
             'readers_id' => [1, 2],
-            'title' => fake()->text(),
+            'title' => fake()->paragraph(),
             'description' => fake()->text(),
         ];
     }

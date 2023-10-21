@@ -1,18 +1,22 @@
 <?php
 
-namespace Konnec\VueEloquentApi\Controllers;
+namespace Konnec\Examples\Controllers;
 
-use App\Models\Post;
+use Konnec\Examples\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class PostController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $result = Post::apiQuery($request);
+//        $result = Post::apiQuery($request);
 
-        return response()->json($result);
+//        return response()->json($result);
+        $posts = Post::all();
+
+        return response()->json($posts);
     }
 
     public function store(Request $request): array
