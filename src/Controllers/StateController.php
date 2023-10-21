@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class StateController extends Controller
 {
-    private mixed $key;
+    private readonly mixed $key;
 
-    private bool $is_allowed;
+    private readonly bool $is_allowed;
 
     public function __construct(Request $request)
     {

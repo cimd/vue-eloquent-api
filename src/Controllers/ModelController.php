@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Log;
 
 class ModelController extends Controller
 {
-    private mixed $model;
+    private readonly mixed $model;
 
-    private bool $is_allowed;
+    private readonly bool $is_allowed;
 
     public function __construct(Request $request)
     {

@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class GetRelations
 {
-    public function __construct()
-    {
-    }
-
     public function handle(Builder $query, mixed $relations): Builder
     {
-        $relationsArray = explode(',', $relations);
+        $relationsArray = explode(',', (string) $relations);
 
         return $query->with($relationsArray);
     }
