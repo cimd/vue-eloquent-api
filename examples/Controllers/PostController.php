@@ -11,12 +11,9 @@ class PostController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-//        $result = Post::apiQuery($request);
+        $result = Post::apiQuery($request);
 
-//        return response()->json($result);
-        $posts = Post::all();
-
-        return response()->json($posts);
+        return response()->json(['data' => $result]);
     }
 
     public function store(Request $request): array

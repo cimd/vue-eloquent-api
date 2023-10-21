@@ -4,6 +4,7 @@ namespace Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Konnec\Examples\Controllers\PostController;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use function Orchestra\Testbench\workbench_path;
@@ -34,6 +35,18 @@ abstract class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations(): void
     {
         $this->loadMigrationsFrom(workbench_path('database/migrations'));
+    }
+
+    /**
+     * Define routes setup.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     * @return void
+     */
+    protected function defineRoutes($router): void
+    {
+        $router->apiResource('/users', PostController::class);
+        $router->apiResource('/posts', PostController::class);
     }
 
     protected function setFactoriesNamespacing(): void

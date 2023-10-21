@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Konnec\VueEloquentApi\Filters\WhereEqual;
 use Konnec\VueEloquentApi\Traits\EloquentApi;
 
@@ -26,6 +27,11 @@ class Post extends Model
     protected array $filters = [
         'author_id' => WhereEqual::class,
     ];
+
+    public function getShortTitleAttribute(): string
+    {
+        return Str::limit($this->attributes['title'], 10);
+    }
 
     public function author(): BelongsTo
     {
