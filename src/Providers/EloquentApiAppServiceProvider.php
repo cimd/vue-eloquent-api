@@ -3,22 +3,12 @@
 namespace Konnec\VueEloquentApi\Providers;
 
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class EloquentApiServiceProvider extends ServiceProvider
+class EloquentApiAppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        /**
-         * Route Macros
-         */
-        Route::macro('batch', function ($uri, $controller) {
-            Route::post("{$uri}/batch", "{$controller}@batchStore");
-            Route::patch("{$uri}/batch", "{$controller}@batchUpdate");
-            Route::patch("{$uri}/batch-destroy", "{$controller}@batchDestroy");
-        });
-
         /**
          * Response Macros
          */
@@ -51,7 +41,5 @@ class EloquentApiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Config/eloquent-api.php' => config_path('eloquent-api.php'),
         ]);
-
-        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
     }
 }

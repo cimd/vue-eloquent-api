@@ -6,14 +6,19 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Konnec\Examples\Models\Post;
+use Konnec\VueEloquentApi\Traits\HasBatchActions;
 
 class PostController extends Controller
 {
+    use HasBatchActions;
+
+    protected string $model = Post::class;
+
     public function index(Request $request): JsonResponse
     {
         $result = Post::apiQuery($request);
 
-        return response()->json(['data' => $result]);
+        return response()->index($result);
     }
 
     public function store(Request $request): array
@@ -21,20 +26,7 @@ class PostController extends Controller
         $post = Post::create($request->all());
 
         return [
-            'data' => $post->fresh()->toArray(),
-        ];
-    }
-
-    public function storeBatch(Request $request): array
-    {
-        $result = [];
-        foreach ($request->data as $item) {
-            $line = $this->store(new Request($item));
-            array_push($result, $line['data']);
-        }
-
-        return [
-            'data' => $result,
+            'data' => $post->toArray(),
         ];
     }
 
@@ -54,39 +46,12 @@ class PostController extends Controller
         ];
     }
 
-    public function updateBatch(Request $request): array
-    {
-        $result = [];
-        foreach ($request->data as $item) {
-            $line = $this->update(new Request($item), $item['id']);
-            array_push($result, $line['data']);
-        }
-
-        return [
-            'data' => $result,
-        ];
-    }
-
     public function destroy(Post $post): array
     {
         $post->delete();
 
         return [
             'data' => $post->toArray(),
-        ];
-    }
-
-    public function destroyBatch(Request $request): array
-    {
-        $result = [];
-        foreach ($request->data as $item) {
-            $post = Post::find($item['id']);
-            $line = $this->destroy($post);
-            array_push($result, $line['data']);
-        }
-
-        return [
-            'data' => $result,
         ];
     }
 }

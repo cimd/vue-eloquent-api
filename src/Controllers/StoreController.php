@@ -12,19 +12,25 @@ class StoreController extends Controller
     {
         $result = Cache::get($request->input('key'));
 
-        return response()->json(['data' => $result], 200);
+        return response()->json([
+            'data' => $result,
+            'store' => $request->input('key'),
+        ], 200);
     }
 
     public function store(Request $request): JsonResponse
     {
         Cache::put($request->input('key'), $request->input('value'), $request->input('time'));
 
-        return response()->json(['data' => Cache::get($request->input('key'))], 201);
+        return response()->json([
+            'data' => Cache::get($request->input('key')),
+            'store' => $request->input('key'),
+        ], 201);
     }
 
-    public function destroy(Request $request): JsonResponse
+    public function destroy(string $store): JsonResponse
     {
-        Cache::forget($request->input('key'));
+        Cache::forget($store);
 
         return response()->json(['data' => null], 204);
     }
