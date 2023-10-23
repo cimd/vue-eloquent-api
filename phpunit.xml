@@ -8,7 +8,7 @@
 >
     <coverage>
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./src</directory>
         </include>
         <report>
             <html outputDirectory="coverage" lowUpperBound="50" highLowerBound="75"/>

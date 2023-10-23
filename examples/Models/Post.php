@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Konnec\VueEloquentApi\Filters\WhereEqual;
+use Konnec\VueEloquentApi\Filters\WhereIn;
+use Konnec\VueEloquentApi\Filters\WhereLike;
 use Konnec\VueEloquentApi\Traits\EloquentApi;
 
 class Post extends Model
@@ -15,7 +17,8 @@ class Post extends Model
     use EloquentApi;
     use HasFactory;
 
-    protected array $protected = [
+    protected $guarded = [
+        'id',
         'created_at',
         'updated_at',
     ];
@@ -25,7 +28,9 @@ class Post extends Model
     ];
 
     protected array $filters = [
+        'id' => WhereIn::class,
         'author_id' => WhereEqual::class,
+        'title' => WhereLike::class,
     ];
 
     public function getShortTitleAttribute(): string
@@ -36,11 +41,6 @@ class Post extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
-    }
-
-    public function readers(): HasMany
-    {
-        return $this->hasMany(User::class, 'id', 'readers_id');
     }
 
     public function comments(): HasMany

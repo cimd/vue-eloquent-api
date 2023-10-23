@@ -17,4 +17,5 @@ use Konnec\Examples\Controllers\PostController;
 Route::post('posts/batch', [PostController::class, 'storeBatch']);
 Route::patch('posts/batch', [PostController::class, 'updateBatch']);
 Route::patch('posts/batch-destroy', [PostController::class, 'destroyBatch']);
+Route::batch('posts/{post}', PostController::class);
 Route::apiResource('posts', PostController::class);

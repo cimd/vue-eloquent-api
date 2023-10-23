@@ -10,13 +10,13 @@ class GetSorting
     {
         $sortingArray = explode(',', $relations);
         foreach ($sortingArray as $sorting) {
-            $lastChar = substr($sorting, -1);
+            $firstChar = substr($sorting, 0, 1);
             $sortOrder = 'asc';
-            if ($lastChar === '-') {
+            if ($firstChar === '-') {
                 $sortOrder = 'desc';
-                $sorting = substr($sorting, 0, -1);
-            } elseif ($lastChar === '+') {
-                $sorting = substr($sorting, 0, -1);
+                $sorting = substr($sorting, 1);
+            } elseif ($firstChar === '+') {
+                $sorting = substr($sorting, 1);
             }
             $query->orderBy($sorting, $sortOrder);
         }

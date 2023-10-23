@@ -6,87 +6,44 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Konnec\Examples\Models\Post;
+use Konnec\VueEloquentApi\Traits\HasBatchActions;
 
 class PostController extends Controller
 {
+    use HasBatchActions;
+
+    protected string $model = Post::class;
+
     public function index(Request $request): JsonResponse
     {
         $result = Post::apiQuery($request);
 
-        return response()->json(['data' => $result]);
+        return response()->index($result);
     }
 
-    public function store(Request $request): array
+    public function store(Request $request): JsonResponse
     {
         $post = Post::create($request->all());
 
-        return [
-            'data' => $post->fresh()->toArray(),
-        ];
+        return response()->store($post);
     }
 
-    public function storeBatch(Request $request): array
+    public function show(Post $post): JsonResponse
     {
-        $result = [];
-        foreach ($request->data as $item) {
-            $line = $this->store(new Request($item));
-            array_push($result, $line['data']);
-        }
-
-        return [
-            'data' => $result,
-        ];
+        return response()->show($post);
     }
 
-    public function show(Post $post): array
-    {
-        return [
-            'data' => $post->toArray(),
-        ];
-    }
-
-    public function update(Request $request, Post $post): array
+    public function update(Request $request, Post $post): JsonResponse
     {
         $post->fill($request->all())->save();
 
-        return [
-            'data' => $post->toArray(),
-        ];
+        return response()->update($post);
     }
 
-    public function updateBatch(Request $request): array
-    {
-        $result = [];
-        foreach ($request->data as $item) {
-            $line = $this->update(new Request($item), $item['id']);
-            array_push($result, $line['data']);
-        }
-
-        return [
-            'data' => $result,
-        ];
-    }
-
-    public function destroy(Post $post): array
+    public function destroy(Post $post): JsonResponse
     {
         $post->delete();
 
-        return [
-            'data' => $post->toArray(),
-        ];
-    }
-
-    public function destroyBatch(Request $request): array
-    {
-        $result = [];
-        foreach ($request->data as $item) {
-            $post = Post::find($item['id']);
-            $line = $this->destroy($post);
-            array_push($result, $line['data']);
-        }
-
-        return [
-            'data' => $result,
-        ];
+        return response()->destroy($post);
     }
 }
