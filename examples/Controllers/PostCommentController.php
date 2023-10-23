@@ -12,9 +12,9 @@ class PostCommentController extends Controller
 {
     public function index(Request $request, Post $post): JsonResponse
     {
-//        $result = $post->load('comments');
+        //        $result = $post->load('comments');
 
-//        return response()->index($post);
+        //        return response()->index($post);
         return response()->json($post);
     }
 

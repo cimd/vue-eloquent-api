@@ -21,37 +21,29 @@ class PostController extends Controller
         return response()->index($result);
     }
 
-    public function store(Request $request): array
+    public function store(Request $request): JsonResponse
     {
         $post = Post::create($request->all());
 
-        return [
-            'data' => $post->toArray(),
-        ];
+        return response()->store($post);
     }
 
-    public function show(Post $post): array
+    public function show(Post $post): JsonResponse
     {
-        return [
-            'data' => $post->toArray(),
-        ];
+        return response()->show($post);
     }
 
-    public function update(Request $request, Post $post): array
+    public function update(Request $request, Post $post): JsonResponse
     {
         $post->fill($request->all())->save();
 
-        return [
-            'data' => $post->toArray(),
-        ];
+        return response()->update($post);
     }
 
-    public function destroy(Post $post): array
+    public function destroy(Post $post): JsonResponse
     {
         $post->delete();
 
-        return [
-            'data' => $post->toArray(),
-        ];
+        return response()->destroy($post);
     }
 }
