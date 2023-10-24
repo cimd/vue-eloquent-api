@@ -94,7 +94,7 @@
         "laravel": {
             "providers": [
                 "Konnec\\VueEloquentApi\\Providers\\EloquentApiAppServiceProvider",
-                "konnec\\VueEloquentApi\\Providers\\EloquentApiRouteServiceProvider"
+                "Konnec\\VueEloquentApi\\Providers\\EloquentApiRouteServiceProvider"
             ]
         }
     },
