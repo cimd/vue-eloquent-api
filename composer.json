@@ -92,7 +92,10 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "providers": [
+                "Konnec\\VueEloquentApi\\Providers\\EloquentApiAppServiceProvider",
+                "konnec\\VueEloquentApi\\Providers\\EloquentApiRouteServiceProvider"
+            ]
         }
     },
     "config": {
