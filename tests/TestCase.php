@@ -29,8 +29,8 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            'Konnec\VueEloquentApi\Providers\EloquentApiAppServiceProvider',
-            'Konnec\VueEloquentApi\Providers\EloquentApiRouteServiceProvider',
+            'Konnec\VueEloquentApi\Providers\ServiceProvider',
+            'Konnec\VueEloquentApi\Providers\RouteServiceProvider',
         ];
     }
 
