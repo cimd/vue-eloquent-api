@@ -33,11 +33,11 @@ trait EloquentApi
             $query = (new GetSorting())->handle($query, $request->get('sort'));
         }
 
-        if ($request->has('pagination')) {
+        if ($request->has('paginate')) {
             $meta = [
-                'pagination' => (new GetPaginationMeta())->handle($query, $request->get('pagination')),
+                'paginate' => (new GetPaginationMeta())->handle($query, $request->get('paginate')),
             ];
-            $query = (new GetPagination())->handle($query, $request->get('pagination'));
+            $query = (new GetPagination())->handle($query, $request->get('paginate'));
         }
 
         if ($request->has('append')) {

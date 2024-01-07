@@ -5,7 +5,7 @@ use Konnec\Examples\Models\Post;
 it('has data and meta keys', function () {
     Post::factory()->count(5)->create();
     $request = [
-        'pagination' => [
+        'paginate' => [
             'page' => 3,
             'pageSize' => 2,
         ],
