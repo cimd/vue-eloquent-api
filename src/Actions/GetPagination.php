@@ -3,12 +3,12 @@
 namespace Konnec\VueEloquentApi\Actions;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class GetPagination
 {
-    public function handle(Builder $query): LengthAwarePaginator
+    public function handle(Builder $query, array $pagination): Builder
     {
-        return $query->fastPaginate();
+        $offset = $pagination['pageSize'] * ($pagination['page'] - 1);
+        return $query->limit($pagination['pageSize'])->offset($offset);
     }
 }
