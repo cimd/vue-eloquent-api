@@ -5,7 +5,7 @@ use Konnec\Examples\Models\Post;
 it('sort ASC', function () {
     Post::factory()->count(1)->create(['title' => 'z']);
     Post::factory()->count(1)->create(['title' => 'a']);
-    $response = $this->getJson('/posts?sort=title+');
+    $response = $this->getJson('/posts?sort=+title');
 
     $response->assertStatus(200);
     expect($response->json('data')[0]['title'])->toBe('a');

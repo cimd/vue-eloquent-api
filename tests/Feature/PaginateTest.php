@@ -2,13 +2,26 @@
 
 use Konnec\Examples\Models\Post;
 
-it('sort ASC', function () {
-    Post::factory()->count(10)->create();
+it('has data and meta keys', function () {
+    Post::factory()->count(5)->create();
     $request = [
-        'page' => '',
+        'pagination' => [
+            'page' => 3,
+            'pageSize' => 2,
+        ],
     ];
     $response = $this->call('GET', '/posts', $request);
 
-    //    $response->assertStatus(200);
-    dump($response->json('data'));
-})->skip();
+    $response->assertStatus(200);
+    expect($response->json())->toHaveKey('data')
+    ->and($response->json())->toHaveKey('meta');
+});
+
+it('doesnt have meta key', function () {
+    Post::factory()->count(5)->create();
+    $request = [];
+    $response = $this->call('GET', '/posts', $request);
+
+    $response->assertStatus(200);
+    expect($response->json())->not()->toHaveKey('meta');
+});

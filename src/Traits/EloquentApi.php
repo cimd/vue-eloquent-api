@@ -3,19 +3,20 @@
 namespace Konnec\VueEloquentApi\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Konnec\VueEloquentApi\Actions\GetFilters;
 use Konnec\VueEloquentApi\Actions\GetPagination;
+use Konnec\VueEloquentApi\Actions\GetPaginationMeta;
 use Konnec\VueEloquentApi\Actions\GetRelations;
 use Konnec\VueEloquentApi\Actions\GetSelection;
 use Konnec\VueEloquentApi\Actions\GetSorting;
 
 trait EloquentApi
 {
-    public function scopeApiQuery(Builder $query, Request $request): Collection|LengthAwarePaginator
+    public function scopeApiQuery(Builder $query, Request $request): array
     {
+        $meta = null;
+
         if ($request->has('fields')) {
             $query = (new GetSelection())->handle($query, $request->get('fields'));
         }
@@ -32,14 +33,25 @@ trait EloquentApi
             $query = (new GetSorting())->handle($query, $request->get('sort'));
         }
 
-        if ($request->has('page')) {
-            return (new GetPagination())->handle($query);
+        if ($request->has('pagination')) {
+            $meta = [
+                'pagination' => (new GetPaginationMeta())->handle($query, $request->get('pagination')),
+            ];
+            $query = (new GetPagination())->handle($query, $request->get('pagination'));
         }
 
         if ($request->has('append')) {
-            return $query->get()->append($request->get('append'));
+            return [
+                'data' => $query->get()->append($request->get('append')),
+                'meta' => $meta,
+            ];
+            //            return $query->get()->append($request->get('append'));
         }
 
-        return $query->get();
+        return [
+            'data' => $query->get(),
+            'meta' => $meta,
+        ];
+        //        return $query->get();
     }
 }
