@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [2024-01-07]
+### Added
+- Pagination
+### Changed
+### Fixed
+
 ## [2023-10-25]
 ### Added
 - Stores API
