@@ -8,7 +8,9 @@ class GetPagination
 {
     public function handle(Builder $query, array $pagination): Builder
     {
-        $offset = $pagination['pageSize'] * ($pagination['page'] - 1);
-        return $query->limit($pagination['pageSize'])->offset($offset);
+        $pageSize = $pagination['pageSize'] ?? 15;
+        $offset = $pageSize * ($pagination['page'] - 1);
+
+        return $query->limit($pageSize)->offset($offset);
     }
 }
