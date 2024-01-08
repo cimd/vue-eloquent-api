@@ -12,10 +12,10 @@ class GetPaginationMeta
         $paginationQuery = (new GetPagination())->handle(clone $query, $pagination);
 
         return [
-            'page' => $pagination['page'],
-            'pageSize' => $pageSize,
+            'page' => (int) $pagination['page'],
+            'pageSize' => (int) $pageSize,
             'pageCount' => $paginationQuery->get()->count(),
-            'totalPages' => ceil($query->count() / $pageSize),
+            'totalPages' => ceil($query->count() / (int) $pageSize),
         ];
     }
 }
