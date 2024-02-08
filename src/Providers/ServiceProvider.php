@@ -14,7 +14,7 @@ class ServiceProvider extends Provider
          */
         Response::macro('index', function ($data, $status = 200) {
             return response()->json(array_merge(
-                ['data' => $data['data']],
+                (isset($data['data']) ? ['data' => $data['data']] : ['data' => $data]),
                 (isset($data['meta']) ? ['meta' => $data['meta']] : []),
             ), $status);
         });
