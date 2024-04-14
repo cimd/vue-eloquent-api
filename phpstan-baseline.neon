@@ -1,46 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:destroy\\(\\)\\.$#"
+			message: "#^Called 'count' on Laravel collection, but could have been retrieved as a query\\.$#"
 			count: 1
-			path: examples/Controllers/PostCommentController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:show\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostCommentController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:store\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostCommentController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:update\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostCommentController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:destroy\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:index\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:store\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\:\\:update\\(\\)\\.$#"
-			count: 1
-			path: examples/Controllers/PostController.php
-
-		-
-			message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Facades\\\\Route\\:\\:batch\\(\\)\\.$#"
-			count: 1
-			path: examples/Routes/api.php
+			path: src/Actions/GetPaginationMeta.php
