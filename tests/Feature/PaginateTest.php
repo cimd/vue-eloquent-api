@@ -14,7 +14,7 @@ it('has data and meta keys', function () {
 
     $response->assertStatus(200);
     expect($response->json())->toHaveKey('data')
-    ->and($response->json())->toHaveKey('meta');
+        ->and($response->json())->toHaveKey('meta');
 });
 
 it('doesnt have meta key', function () {
