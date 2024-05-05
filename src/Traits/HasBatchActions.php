@@ -11,29 +11,7 @@ trait HasBatchActions
     {
         $result = [];
         foreach ($request->input('data') as $item) {
-
-            if (isset($this->requests['store'])) {
-                //                var_dump($this->requests['store']);
-                //                ob_flush();
-                $validatedRequest = new ($this->requests['store'])(
-                    $request->query->all(),
-                    $item,
-                    $request->attributes->all(),
-                    $request->cookies->all(),
-                    $request->files->all(),
-                    $request->server->all(),
-                    $item
-                );
-                dump($validatedRequest->validator);
-                ob_flush();
-
-                //                var_dump((new Request($item)));
-                //                ob_flush();
-            } else {
-                $validatedRequest = new Request($request->query->all(), $item);
-            }
-
-            $res = $this->store($validatedRequest);
+            $res = $this->store(new Request($item));
             $formatted = json_decode($res->getContent())->data;
             array_push($result, $formatted);
         }
@@ -45,13 +23,6 @@ trait HasBatchActions
     {
         $result = [];
         foreach ($request->input('data') as $item) {
-
-            if (isset($this->requests['update'])) {
-                $validatedRequest = new $this->requests['update']($item);
-            } else {
-                $validatedRequest = new Request($item);
-            }
-
             $res = $this->update(new Request($item), ($this->model)::find($item['id']));
             $formatted = json_decode($res->getContent())->data;
             array_push($result, $formatted);

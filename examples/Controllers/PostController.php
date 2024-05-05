@@ -28,13 +28,9 @@ class PostController extends Controller
         return response()->index($result);
     }
 
-    public function store(PostStoreRequest $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
-        dump($request);
-        ob_flush();
-        $post = Post::create($request->validated());
-//        var_dump($post);
-//        ob_flush();
+        $post = Post::create($request->all());
 
         return response()->store($post);
     }
@@ -44,9 +40,9 @@ class PostController extends Controller
         return response()->show($post);
     }
 
-    public function update(PostUpdateRequest $request, Post $post): JsonResponse
+    public function update(Request $request, Post $post): JsonResponse
     {
-        $post->fill($request->safe())->save();
+        $post->fill($request->all())->save();
 
         return response()->update($post);
     }
