@@ -28,9 +28,9 @@ class PostController extends Controller
         return response()->index($result);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(PostStoreRequest $request): JsonResponse
     {
-        $post = Post::create($request->all());
+        $post = Post::create($request->validated());
 
         return response()->store($post);
     }
