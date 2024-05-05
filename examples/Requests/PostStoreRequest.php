@@ -15,7 +15,7 @@ class PostStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|max:60',
-            'description' => 'required|max:120',
+            'description' => 'required|max:255',
             'author_id' => 'required|numeric',
         ];
     }

@@ -14,10 +14,10 @@ class PostUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|numeric',
-            //            'title' => 'required|max:60',
-            //            'description' => 'required|max:120',
-            //            'author_id' => 'required|numeric',
+            //            'id' => 'required|numeric',
+            'title' => 'required|max:60',
+            'description' => 'required|max:255',
+            'author_id' => 'required|numeric',
         ];
     }
 }

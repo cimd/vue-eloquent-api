@@ -2,6 +2,18 @@
 
 use Konnec\Examples\Models\Post;
 
+it('stores', function () {
+    $request = [
+        'author_id' => 1,
+        'readers_id' => [1, 2],
+        'title' => 'Title 1',
+        'description' => fake()->name,
+    ];
+    $response = $this->postJson('/posts', $request);
+
+    $response->assertStatus(201);
+});
+
 it('stores batch', function () {
     $request = [
         'data' => [
@@ -9,17 +21,19 @@ it('stores batch', function () {
                 'author_id' => 1,
                 'readers_id' => [1, 2],
                 'title' => 'Title 1',
-                'description' => fake()->text,
+//                'description' => fake()->name,
             ],
             [
                 'author_id' => 1,
                 'readers_id' => [1, 2],
                 'title' => 'Title 2',
-                'description' => fake()->text,
+//                'description' => fake()->name,
             ],
         ],
     ];
     $response = $this->postJson('/posts/batch', $request);
+//    var_dump($response->json());
+//    ob_flush();
 
     $response->assertStatus(201);
     expect($response->json('data'))->toHaveCount(2);

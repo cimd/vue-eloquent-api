@@ -30,7 +30,11 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request): JsonResponse
     {
-        $post = Post::create($request->validated());
+//        dump($request->all());
+//        ob_flush();
+        $post = Post::create($request->all());
+//        var_dump($post);
+//        ob_flush();
 
         return response()->store($post);
     }
