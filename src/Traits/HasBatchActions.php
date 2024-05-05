@@ -13,16 +13,24 @@ trait HasBatchActions
         foreach ($request->input('data') as $item) {
 
             if (isset($this->requests['store'])) {
-//                var_dump($this->requests['store']);
-//                ob_flush();
-                $validatedRequest = new ($this->requests['store'])($item);
-                dump($validatedRequest);
+                //                var_dump($this->requests['store']);
+                //                ob_flush();
+                $validatedRequest = new ($this->requests['store'])(
+                    $request->query->all(),
+                    $item,
+                    $request->attributes->all(),
+                    $request->cookies->all(),
+                    $request->files->all(),
+                    $request->server->all(),
+                    $item
+                );
+                dump($validatedRequest->validator);
                 ob_flush();
 
                 //                var_dump((new Request($item)));
                 //                ob_flush();
             } else {
-                $validatedRequest = new Request($item);
+                $validatedRequest = new Request($request->query->all(), $item);
             }
 
             $res = $this->store($validatedRequest);
