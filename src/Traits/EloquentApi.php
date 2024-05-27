@@ -45,13 +45,11 @@ trait EloquentApi
                 'data' => $query->get()->append($request->get('append')),
                 'meta' => $meta,
             ];
-            //            return $query->get()->append($request->get('append'));
         }
 
         return [
             'data' => $query->get(),
             'meta' => $meta,
         ];
-        //        return $query->get();
     }
 }
