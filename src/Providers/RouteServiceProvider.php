@@ -18,6 +18,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::patch("{$uri}/batch-destroy", "{$controller}@batchDestroy");
         });
 
-        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
+        //        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
     }
 }
