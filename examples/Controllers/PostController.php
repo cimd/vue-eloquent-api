@@ -6,6 +6,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Konnec\Examples\Models\Post;
+use Konnec\Examples\Requests\PostStoreRequest;
+use Konnec\Examples\Requests\PostUpdateRequest;
 use Konnec\VueEloquentApi\Traits\HasBatchActions;
 
 class PostController extends Controller
@@ -13,6 +15,11 @@ class PostController extends Controller
     use HasBatchActions;
 
     protected string $model = Post::class;
+
+    protected array $requests = [
+        'store' => PostStoreRequest::class,
+        'update' => PostUpdateRequest::class,
+    ];
 
     public function index(Request $request): JsonResponse
     {
