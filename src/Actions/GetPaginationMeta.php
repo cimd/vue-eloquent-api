@@ -14,7 +14,7 @@ class GetPaginationMeta
         return [
             'page' => (int) $pagination['page'],
             'pageSize' => (int) $pageSize,
-            'pageCount' => $paginationQuery->get()->count(),
+            'pageCount' => $paginationQuery->count(),
             'totalPages' => ceil($query->count() / (int) $pageSize),
         ];
     }
