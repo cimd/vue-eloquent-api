@@ -37,7 +37,11 @@ class PostController extends Controller
 
     public function show(Post $post): JsonResponse
     {
-        return response()->show($post);
+        return response()->show([
+            'data' => $post,
+            'meta' => 'meta',
+            'links' => 'links',
+        ]);
     }
 
     public function update(Request $request, Post $post): JsonResponse

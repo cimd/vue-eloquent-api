@@ -13,30 +13,33 @@ class ServiceProvider extends Provider
          * Response Macros
          */
         Response::macro('index', function ($data, $status = 200) {
-            return response()->json(array_merge(
-                (isset($data['data']) ? ['data' => $data['data']] : ['data' => $data]),
-                (isset($data['meta']) ? ['meta' => $data['meta']] : []),
-            ), $status);
+            return response()->json(
+                (! isset($data['data']) ? ['data' => $data] : $data),
+                $status
+            );
         });
         Response::macro('show', function ($data, $status = 200) {
-            return response()->json([
-                'data' => $data,
-            ], $status);
+            return response()->json(
+                (! isset($data['data']) ? ['data' => $data] : $data),
+                $status);
         });
         Response::macro('store', function ($data, $status = 201) {
-            return response()->json([
-                'data' => $data,
-            ], $status);
+            return response()->json(
+                (! isset($data['data']) ? ['data' => $data] : $data),
+                $status
+            );
         });
         Response::macro('update', function ($data, $status = 200) {
-            return response()->json([
-                'data' => $data,
-            ], $status);
+            return response()->json(
+                (! isset($data['data']) ? ['data' => $data] : $data),
+                $status
+            );
         });
         Response::macro('destroy', function ($data, $status = 200) {
-            return response()->json([
-                'data' => $data,
-            ], $status);
+            return response()->json(
+                (! isset($data['data']) ? ['data' => $data] : $data),
+                $status
+            );
         });
 
         $this->publishes([
