@@ -41,15 +41,15 @@ trait EloquentApi
         }
 
         if ($request->has('append')) {
-            return [
-                'data' => $query->get()->append($request->get('append')),
-                'meta' => $meta,
-            ];
+            return array_merge(
+                ['data' => $query->get()->append($request->get('append'))],
+                isset($meta) ? ['meta' => $meta] : [],
+            );
         }
 
-        return [
-            'data' => $query->get(),
-            'meta' => $meta,
-        ];
+        return array_merge(
+            ['data' => $query->get()],
+            isset($meta) ? ['meta' => $meta] : [],
+        );
     }
 }
