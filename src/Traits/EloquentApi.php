@@ -13,7 +13,7 @@ use Konnec\VueEloquentApi\Actions\GetSorting;
 
 trait EloquentApi
 {
-    public function scopeApiQuery(Builder $query, Request $request): array
+    public function scopeApiQuery(Builder $query, Request $request, $builder = false): array|Builder
     {
         $meta = null;
 
@@ -38,6 +38,10 @@ trait EloquentApi
                 'paginate' => (new GetPaginationMeta())->handle($query, $request->get('paginate')),
             ];
             $query = (new GetPagination())->handle($query, $request->get('paginate'));
+        }
+
+        if ($builder) {
+            return $query;
         }
 
         if ($request->has('append')) {
