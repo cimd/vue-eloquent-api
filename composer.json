@@ -16,16 +16,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "hammerstone/fast-paginate": "^1.1"
+        "aaronfrancis/fast-paginate": "^2.0"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.13",
+        "barryvdh/laravel-ide-helper": "^3.0",
         "driftingly/rector-laravel": "^0.26",
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.13",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7.10",
-        "nunomaduro/larastan": "^2.6",
+        "larastan/larastan": "^2.6",
         "orchestra/testbench": "^8.13",
         "pestphp/pest": "^2.24",
         "pestphp/pest-plugin-faker": "^2.0",
