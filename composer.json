@@ -15,8 +15,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
-        "aaronfrancis/fast-paginate": "^2.0"
+        "php": "^8.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0",
