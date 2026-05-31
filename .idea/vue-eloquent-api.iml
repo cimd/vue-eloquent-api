@@ -158,7 +158,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/zbateson/stream-decorators" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/error-solutions" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/aaronfrancis/fast-paginate" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/iamcal/sql-parser" />
