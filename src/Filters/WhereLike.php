@@ -4,12 +4,12 @@ namespace Konnec\VueEloquentApi\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class WhereLike implements Filter
+readonly class WhereLike implements Filter
 {
     public function __construct(
-        private readonly Builder $query,
-        private readonly string $key,
-        private readonly mixed $value
+        private Builder $query,
+        private string  $key,
+        private mixed   $value
     ) {
     }
 
