@@ -3,6 +3,7 @@
 namespace Konnec\VueEloquentApi\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Konnec\VueEloquentApi\Actions\GetFilters;
 use Konnec\VueEloquentApi\Actions\GetPagination;
@@ -18,26 +19,26 @@ trait EloquentApi
         $meta = null;
 
         if ($request->has('fields')) {
-            $query = (new GetSelection())->handle($query, $request->get('fields'));
+            $query = (new GetSelection())->handle($query, $request->input('fields'));
         }
 
         if ($request->has('filter')) {
-            $query = (new GetFilters($this->filters))->handle($query, $request->get('filter'));
+            $query = (new GetFilters($this->filters))->handle($query, $request->input('filter'));
         }
 
         if ($request->has('include')) {
-            $query = (new GetRelations())->handle($query, $request->get('include'));
+            $query = (new GetRelations())->handle($query, $request->input('include'));
         }
 
         if ($request->has('sort')) {
-            $query = (new GetSorting())->handle($query, $request->get('sort'));
+            $query = (new GetSorting())->handle($query, $request->input('sort'));
         }
 
         if ($request->has('paginate')) {
             $meta = [
-                'paginate' => (new GetPaginationMeta())->handle($query, $request->get('paginate')),
+                'paginate' => (new GetPaginationMeta())->handle($query, $request->input('paginate')),
             ];
-            $query = (new GetPagination())->handle($query, $request->get('paginate'));
+            $query = (new GetPagination())->handle($query, $request->input('paginate'));
         }
 
         if ($builder) {
@@ -46,7 +47,7 @@ trait EloquentApi
 
         if ($request->has('append')) {
             return array_merge(
-                ['data' => $query->get()->append($request->get('append'))],
+                ['data' => $query->get()->append($request->input('append'))],
                 isset($meta) ? ['meta' => $meta] : [],
             );
         }
@@ -60,7 +61,7 @@ trait EloquentApi
     public function scopeApiFields(Builder $query, Request $request): Builder
     {
         if ($request->has('fields')) {
-            $query = (new GetSelection())->handle($query, $request->get('fields'));
+            $query = (new GetSelection())->handle($query, $request->input('fields'));
         }
 
         return $query;
@@ -69,7 +70,7 @@ trait EloquentApi
     public function scopeApiFilter(Builder $query, Request $request): Builder
     {
         if ($request->has('filter')) {
-            $query = (new GetFilters($this->filters))->handle($query, $request->get('filter'));
+            $query = (new GetFilters($this->filters))->handle($query, $request->input('filter'));
         }
 
         return $query;
@@ -108,10 +109,10 @@ trait EloquentApi
         ];
     }
 
-    public function scopeApiAppend(Builder $query, Request $request): Builder
+    public function scopeApiAppend(Builder $query, Request $request): Builder|Collection
     {
         if ($request->has('append')) {
-            return $query->get()->append($request->get('append'));
+            return $query->get()->append($request->input('append'));
         }
 
         return $query;
