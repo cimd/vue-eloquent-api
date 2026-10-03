@@ -7,9 +7,6 @@
     beStrictAboutOutputDuringTests="true"
 >
     <coverage>
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
         <report>
             <html outputDirectory="coverage" lowUpperBound="50" highLowerBound="75"/>
         </report>
@@ -21,7 +18,7 @@
     </testsuites>
     <source>
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./src</directory>
         </include>
     </source>
     <php>
