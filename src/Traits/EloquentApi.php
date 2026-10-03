@@ -19,7 +19,7 @@ trait EloquentApi
         $meta = null;
 
         if ($request->has('fields')) {
-            $query = (new GetSelection())->handle($query, $request->input('fields'));
+            $query = (new GetSelection)->handle($query, $request->input('fields'));
         }
 
         if ($request->has('filter')) {
@@ -27,18 +27,18 @@ trait EloquentApi
         }
 
         if ($request->has('include')) {
-            $query = (new GetRelations())->handle($query, $request->input('include'));
+            $query = (new GetRelations)->handle($query, $request->input('include'));
         }
 
         if ($request->has('sort')) {
-            $query = (new GetSorting())->handle($query, $request->input('sort'));
+            $query = (new GetSorting)->handle($query, $request->input('sort'));
         }
 
         if ($request->has('paginate')) {
             $meta = [
-                'paginate' => (new GetPaginationMeta())->handle($query, $request->input('paginate')),
+                'paginate' => (new GetPaginationMeta)->handle($query, $request->input('paginate')),
             ];
-            $query = (new GetPagination())->handle($query, $request->input('paginate'));
+            $query = (new GetPagination)->handle($query, $request->input('paginate'));
         }
 
         if ($builder) {
@@ -61,7 +61,7 @@ trait EloquentApi
     public function scopeApiFields(Builder $query, Request $request): Builder
     {
         if ($request->has('fields')) {
-            $query = (new GetSelection())->handle($query, $request->input('fields'));
+            $query = (new GetSelection)->handle($query, $request->input('fields'));
         }
 
         return $query;
@@ -79,7 +79,7 @@ trait EloquentApi
     public function scopeApiInclude(Builder $query, Request $request): Builder
     {
         if ($request->has('include')) {
-            $query = (new GetRelations())->handle($query, $request->get('include'));
+            $query = (new GetRelations)->handle($query, $request->get('include'));
         }
 
         return $query;
@@ -88,7 +88,7 @@ trait EloquentApi
     public function scopeApiSort(Builder $query, Request $request): Builder
     {
         if ($request->has('sort')) {
-            $query = (new GetSorting())->handle($query, $request->get('sort'));
+            $query = (new GetSorting)->handle($query, $request->get('sort'));
         }
 
         return $query;
@@ -98,9 +98,9 @@ trait EloquentApi
     {
         if ($request->has('paginate')) {
             $meta = [
-                'paginate' => (new GetPaginationMeta())->handle($query, $request->get('paginate')),
+                'paginate' => (new GetPaginationMeta)->handle($query, $request->get('paginate')),
             ];
-            $query = (new GetPagination())->handle($query, $request->get('paginate'));
+            $query = (new GetPagination)->handle($query, $request->get('paginate'));
         }
 
         return [
