@@ -1,6 +1,7 @@
 name: Lint
 on:
-  - push
+  push:
+  pull_request:
 jobs:
   lint:
     name: Lint
@@ -11,8 +12,9 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           tools: phplint, laravel/pint
+          coverage: none
       - name: Check syntax
         run: phplint .
       - name: Check code style
