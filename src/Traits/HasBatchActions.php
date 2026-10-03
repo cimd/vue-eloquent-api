@@ -13,7 +13,7 @@ trait HasBatchActions
         foreach ($request->input('data') as $item) {
             $res = $this->store(new Request($item));
             $formatted = json_decode($res->getContent())->data;
-            array_push($result, $formatted);
+            $result[] = $formatted;
         }
 
         return response()->store($result);
@@ -25,7 +25,7 @@ trait HasBatchActions
         foreach ($request->input('data') as $item) {
             $res = $this->update(new Request($item), ($this->model)::find($item['id']));
             $formatted = json_decode($res->getContent())->data;
-            array_push($result, $formatted);
+            $result[] = $formatted;
         }
 
         return response()->update($result);
@@ -37,7 +37,7 @@ trait HasBatchActions
         foreach ($request->input('data') as $item) {
             $res = $this->destroy(($this->model)::find($item['id']));
             $formatted = json_decode($res->getContent())->data;
-            array_push($result, $formatted);
+            $result[] = $formatted;
         }
 
         return response()->destroy($result);

@@ -3,9 +3,16 @@
 namespace Konnec\VueEloquentApi\Actions;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class GetSorting
 {
+    /**
+     * @template TModel of Model
+     *
+     * @param  Builder<TModel>  $query
+     * @return Builder<TModel>
+     */
     public function handle(Builder $query, string $relations): Builder
     {
         $sortingArray = explode(',', $relations);

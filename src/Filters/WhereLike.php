@@ -3,16 +3,27 @@
 namespace Konnec\VueEloquentApi\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
-class WhereLike implements Filter
+/**
+ * @template TModel of Model
+ *
+ * @implements Filter<TModel>
+ */
+readonly class WhereLike implements Filter
 {
+    /**
+     * @param  Builder<TModel>  $query
+     */
     public function __construct(
-        private readonly Builder $query,
-        private readonly string $key,
-        private readonly mixed $value
-    ) {
-    }
+        private Builder $query,
+        private string $key,
+        private mixed $value
+    ) {}
 
+    /**
+     * @return Builder<TModel>
+     */
     public function handle(): Builder
     {
         return $this->query->where($this->key, 'like', '%' . $this->value . '%');
