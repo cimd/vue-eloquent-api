@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Konnec\VueEloquentApi\Actions\GetFilters;
+use Konnec\VueEloquentApi\Actions\GetLimit;
 use Konnec\VueEloquentApi\Actions\GetPagination;
 use Konnec\VueEloquentApi\Actions\GetPaginationMeta;
 use Konnec\VueEloquentApi\Actions\GetRelations;
@@ -79,7 +80,7 @@ trait EloquentApi
     public function scopeApiInclude(Builder $query, Request $request): Builder
     {
         if ($request->has('include')) {
-            $query = (new GetRelations)->handle($query, $request->get('include'));
+            $query = (new GetRelations)->handle($query, $request->input('include'));
         }
 
         return $query;
@@ -88,7 +89,16 @@ trait EloquentApi
     public function scopeApiSort(Builder $query, Request $request): Builder
     {
         if ($request->has('sort')) {
-            $query = (new GetSorting)->handle($query, $request->get('sort'));
+            $query = (new GetSorting)->handle($query, $request->input('sort'));
+        }
+
+        return $query;
+    }
+
+    public function scopeApiLimit(Builder $query, Request $request): Builder
+    {
+        if ($request->has('limit')) {
+            $query = (new GetLimit)->handle($query, $request->input('limit'));
         }
 
         return $query;
@@ -98,9 +108,9 @@ trait EloquentApi
     {
         if ($request->has('paginate')) {
             $meta = [
-                'paginate' => (new GetPaginationMeta)->handle($query, $request->get('paginate')),
+                'paginate' => (new GetPaginationMeta)->handle($query, $request->input('paginate')),
             ];
-            $query = (new GetPagination)->handle($query, $request->get('paginate'));
+            $query = (new GetPagination)->handle($query, $request->input('paginate'));
         }
 
         return [
