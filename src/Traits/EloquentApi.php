@@ -42,6 +42,10 @@ trait EloquentApi
             $query = (new GetPagination)->handle($query, $request->input('paginate'));
         }
 
+        if ($request->has('limit')) {
+            $query = (new GetLimit)->handle($query, $request->input('limit'));
+        }
+
         if ($builder) {
             return $query;
         }

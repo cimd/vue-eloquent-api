@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- `scopeApiLimit`: individual scope that applies the `limit` request parameter
+### Changed
+### Fixed
+- `apiQuery` now applies the `limit` request parameter (it was ignored, returning the whole collection). when both are sent, `limit` caps the number of records of the page
+
 ## [1.3.0]
 ### Added
 - Split apiQuery into individual query builders
